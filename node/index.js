@@ -14,8 +14,8 @@ app.get("/th", function(req, res) {
 
   // 確認有收到溫度和濕度值（兩者都不是undefined）
   if (temp != undefined && humid != undefined ) {
-　　console.log("溫度: " + temp + "，濕度： " + humid + ",土地濕度 " + soidhumid + "PH值" + ph + "水位" + waterLevel);
-　　res.send("溫度: " + temp + "°C，濕度： " + humid + "%" + ",土地濕度 "+soidhumid + "PH值" + ph + "水位" + waterLevel););
+　　console.log("溫度 :" + temp + "，濕度 :" + humid + ",土地濕度 :" + soidhumid + " PH值 :" + ph + " 水位 :" + waterLevel);
+　　res.send("溫度: " + temp + "°C，濕度： " + humid + "%" + ",土地濕度 "+soidhumid + "PH值" + ph + "水位" + waterLevel);
   } else {
   	console.log("沒收到資料！");
   }
