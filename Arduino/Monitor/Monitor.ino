@@ -9,13 +9,14 @@
 #define Offset 0.00    
 #define ArrayLenth  40    //times of collection
 #define samplingInterval 20
+//#define dataPin 3
+//#define clockPin 4
 int pHArray[ArrayLenth];   //Store the average value of the sensor feedback
 int pHArrayIndex=0;   
 
 dht11 DHT11;
-#define dataPin  3
-#define clockPin 4
-SHT1x sht1x(dataPin, clockPin);
+
+SHT1x sht1x(3, 4);
 
 const byte dataPin = 8;
 const int SW[3]={7,6,5};
@@ -48,7 +49,7 @@ void setup() {
 }
 
 void loop() {
-
+  
   static  float pHValue,voltage;
   static unsigned long samplingTime = millis();
   static unsigned long printTime = millis();
@@ -62,18 +63,28 @@ void loop() {
     samplingTime=millis();
   }
   
-  
-  if (millis() - past > interval) {
-    int chk = DHT11.read(dataPin);
-    int moisture = analogRead(A0);
+  //opt1
+//  if (millis() - past > interval) {
+//    int chk = DHT11.read(dataPin);
+//    int moisture = analogRead(A0);
+//
+//    if (chk == 0) {
+//      httpSend(moisture, voltage, waterLevel());
+//    } else {
+//      Serial.println("Sensor Error");
+//    }
+//  }
 
-    if (chk == 0) {
-      httpSend(moisture, voltage, waterLevel());
-    } else {
-      Serial.println("Sensor Error");
-    }
+  //opt2
+  if (millis() - past > interval) {
+    int moisture = analogRead(A0);
+    httpSend(moisture, voltage, waterLevel());
   }
+
+  
 }
+
+
 
 double avergearray(int* arr, int number){
   int i;
@@ -161,8 +172,8 @@ void httpSend(int moisture, double voltage ,String waterLevel) {
   if (client.connect(server, 5438)) {
     Serial.println("connected");
 // 發送HTTP請求
-    client << "GET /th?airtemperature=" << dtostrf(DHT11.temperature, 5, 2, temperatureBuffer)
-           << "&airhumidity=" << dtostrf(DHT11.humidity, 5, 2, humidityBuffer)
+    client << "GET /th?airtemperature=" << dtostrf(sht1x.readTemperatureC(), 5, 2, temperatureBuffer)
+           << "&airhumidity=" << dtostrf(sht1x.readHumidity(), 5, 2, humidityBuffer)
            << "&soidmoisture=" << dtostrf(moisture, 5, 2, soidmoistureBuffer)
            << "&ph=" << dtostrf(3.5*voltage + Offset, 5, 3, phBuffer)//untest
            << "&waterLevel=" << waterLevel//untest

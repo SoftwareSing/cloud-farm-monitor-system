@@ -7,7 +7,7 @@ app.get("/", function(req, res) {
 
 app.get("/th", function(req, res) {
   var temp = req.query.airtemperature;   // 讀取查詢字串的t值
-  var humid = req.query.airtemperature;  // 讀取查詢字串的h值
+  var humid = req.query.airhumidity;  // 讀取查詢字串的h值
   var soidhumid = req.query.soidmoisture;
   var ph = req.query.ph;
   var waterLevel = req.query.waterLevel;
