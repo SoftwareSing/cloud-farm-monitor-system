@@ -16,10 +16,11 @@ int pHArrayIndex=0;
 
 dht11 DHT11;
 
-SHT1x sht1x(3, 4);
+SHT1x sht1x(3, 4); //前面是data後面是clock
 
-const byte dataPin = 8;
-const int SW[3]={7,6,5};
+const byte dataPin = 8;//dht11 pin
+const int SW[3]={7,6,5};//第一組水位
+
 
 unsigned long past = 0; 
 const unsigned long interval = 2 * 1000L;
@@ -77,7 +78,7 @@ void loop() {
 
   //opt2
   if (millis() - past > interval) {
-    int moisture = analogRead(A0);
+    int moisture = analogRead(A0);//土壤濕度pin
     httpSend(moisture, voltage, waterLevel());
   }
 
