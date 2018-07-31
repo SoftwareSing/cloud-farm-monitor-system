@@ -28,10 +28,10 @@ const unsigned long interval = 2 * 1000L;
 byte mac[] = {0x00,0xa0,0x96,0x7b,0x87,0xb3};
 
 // 要連接的伺服器IP位址，這你們要給我
-IPAddress server(192, 168, 0, 196);
+IPAddress server(192, 168, 50, 177);
 
 // 本機的IP位址，也是你們要給我
-IPAddress ip(192, 168, 0, 200);
+IPAddress ip(192, 168, 50, 5);
 
 // 初始化乙太用戶端
 EthernetClient client;
@@ -78,8 +78,10 @@ void loop() {
 
   //opt2
   if (millis() - past > interval) {
+    
     int moisture = analogRead(A0);//土壤濕度pin
     httpSend(moisture, voltage, waterLevel());
+    Serial.println("fuck");
   }
 
   
@@ -176,7 +178,7 @@ void httpSend(int moisture, double voltage ,String waterLevel) {
     client << "GET /th?airtemperature=" << dtostrf(sht1x.readTemperatureC(), 5, 2, temperatureBuffer)
            << "&airhumidity=" << dtostrf(sht1x.readHumidity(), 5, 2, humidityBuffer)
            << "&soidmoisture=" << dtostrf(moisture, 5, 2, soidmoistureBuffer)
-           << "&ph=" << dtostrf(3.5*voltage + Offset, 5, 3, phBuffer)//untest
+           //<< "&ph=" << dtostrf(3.5*voltage + Offset, 5, 3, phBuffer)//untest
            << "&waterLevel=" << waterLevel//untest
            << " HTTP/1.1\n";
     client.println();
