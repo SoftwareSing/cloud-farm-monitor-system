@@ -3,5 +3,6 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
     "files.eol": "\n",
-    "html.format.endWithNewline": true
+    "html.format.endWithNewline": true,
+    "eslint.enable": true
 }
