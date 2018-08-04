@@ -4,5 +4,6 @@
     "editor.tabSize": 4,
     "files.eol": "\n",
     "html.format.endWithNewline": true,
-    "eslint.enable": true
+    "eslint.enable": true,
+    "C_Cpp.intelliSenseEngineFallback": "Enabled"
 }

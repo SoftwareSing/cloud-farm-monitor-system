@@ -39,7 +39,8 @@ EthernetClient client;
 void setup(){
     Serial.begin(9600);
     for(int i = 0; i < 3; i++){
-        pinMode(SW[i],INPUT);//指撥開關腳位水位
+        pinMode(SW1[i],INPUT);//指撥開關腳位水位
+        pinMode(SW2[i],INPUT);
     }
     Ethernet.begin(mac, ip);  // 初始化乙太網路連線
 
@@ -77,8 +78,9 @@ void loop(){
 
   //opt2
     if (millis() - past > interval) {
-        int moisture = analogRead(A0);//土壤濕度pin
-        httpSend(moisture, voltage, waterLevelTank1(), waterLevelTank2());
+        int moisture1 = analogRead(A0);//土壤濕度pin
+        int moisture2 = analogRead(A5);
+        httpSend(moisture1, moisture2, voltage, waterLevelTank1(), waterLevelTank2());
         Serial.println("fuck");
     }
   
@@ -180,7 +182,7 @@ String waterLevelTank2(){
 
 }
 
-void httpSend(int moisture, double voltage ,String waterLevelTank1, String waterLevelTank2) {
+void httpSend(int moisture1 ,int moisture2, double voltage ,String waterLevelTank1, String waterLevelTank2) {
     char temperatureBuffer[6] = "";
     char humidityBuffer[6] = "";
     char soidmoistureBuffer[6] = "";
@@ -194,7 +196,8 @@ void httpSend(int moisture, double voltage ,String waterLevelTank1, String water
 // 發送HTTP請求
         client << "GET /th?airtemperature=" << dtostrf(sht1x.readTemperatureC(), 5, 2, temperatureBuffer)
                << "&airhumidity=" << dtostrf(sht1x.readHumidity(), 5, 2, humidityBuffer)
-               << "&soidmoisture=" << dtostrf(moisture, 5, 2, soidmoistureBuffer)
+               << "&soidmoisture1=" << dtostrf(moisture1, 5, 2, soidmoistureBuffer)
+               << "&soidmoisture2=" << dtostrf(moisture2, 5, 2, soidmoistureBuffer)
              //<< "&ph=" << dtostrf(3.5*voltage + Offset, 5, 3, phBuffer)//untest
                << "&waterLevelTank1=" << waterLevelTank1//untest
                << "&waterLevelTank2=" << waterLevelTank2//untest
