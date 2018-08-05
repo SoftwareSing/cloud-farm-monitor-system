@@ -16,7 +16,7 @@ int pHArrayIndex = 0;
 
 dht11 DHT11;
 
-SHT1x sht1x(2, 3); //前面是data後面是clock
+SHT1x sht1x(2, 3); //前面是data後面是clock //燒毀中
 
 //const byte dataPin = 8;//dht11 pin
 const int SW1[3] = {6, 5, 4};//第一組水位
@@ -80,7 +80,8 @@ void loop(){
     if (millis() - past > interval) {
         int moisture1 = analogRead(A0);//土壤濕度pin
         int moisture2 = analogRead(A5);
-        httpSend(moisture1, moisture2, voltage, waterLevelTank1(), waterLevelTank2());
+        httpSend(moisture1, moisture2, 
+            voltage, waterLevelTank1(), waterLevelTank2());
         Serial.println("fuck");
     }
   
@@ -156,9 +157,9 @@ String waterLevelTank1(){
   
     int a,b,c;
 
-    a=digitalRead(SW1[0]);
-    b=digitalRead(SW1[1]);
-    c=digitalRead(SW1[2]);
+    a = digitalRead(SW1[0]);
+    b = digitalRead(SW1[1]);
+    c = digitalRead(SW1[2]);
     checkWaterLevel(a,b,c);
 //Serial.print(a);
 //Serial.print(b);
@@ -171,9 +172,9 @@ String waterLevelTank2(){
   
     int a,b,c;
 
-    a=digitalRead(SW2[0]);
-    b=digitalRead(SW2[1]);
-    c=digitalRead(SW2[2]);
+    a = digitalRead(SW2[0]);
+    b = digitalRead(SW2[1]);
+    c = digitalRead(SW2[2]);
     checkWaterLevel(a,b,c);
 //Serial.print(a);
 //Serial.print(b);
