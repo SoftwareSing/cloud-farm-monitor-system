@@ -34,11 +34,11 @@ app.post("/temp", function(req, res) { // JSON資料的處理程式
 
     console.log("溫度：" + json.airtemp); // 在控制台顯示溫度值
     console.log("濕度：" + json.airhumid); // 顯示濕度值
-    console.log("土壤濕度：" + json.soild1humid1); // 顯示濕度值
-    console.log("土壤濕度：" + json.soild1humid2); // 顯示濕度值
-    console.log("PH：" + json.ph); // 顯示濕度值
-    console.log("水箱一水位：" + json.waterLevelTank1); // 顯示濕度值
-    console.log("水箱二水位：" + json.waterLevelTank2); // 顯示濕度值
+    console.log("土壤濕度：" + json.soild1humid1); // 顯示土壤濕度
+    console.log("土壤濕度：" + json.soild1humid2); // 顯示土壤濕度
+    console.log("PH：" + json.ph); // 顯示ph值
+    console.log("水箱一水位：" + json.waterLevelTank1); // 顯示水位
+    console.log("水箱二水位：" + json.waterLevelTank2); // 顯示水位
 });
 
 app.use("*", function(req, res) {

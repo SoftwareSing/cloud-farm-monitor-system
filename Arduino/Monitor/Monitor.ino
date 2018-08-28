@@ -110,7 +110,9 @@ void loop(){
     int moisture2 = analogRead(A5);
     //double ph = 3.5*voltage + Offset;
     double ph = 7.01;
-    
+    int waterlevel1 = waterLevelTank1();
+    int waterlevel2 = waterLevelTank2();
+       
     Serial.println("111");
     //String jsonStr = "{\"temp\":11,\"humid\":11}";  // 定義JSON字串
     
@@ -121,14 +123,12 @@ void loop(){
         + ",\"soild1humid1\":" + String(moisture1) 
         + ",\"soild1humid2\":" + String(moisture2) 
         + ",\"ph\":" + String(ph)
-        //+ ",\"waterLevelTank1\":" + waterLevelTank1() 
-        //+ ",\"waterLevelTank2\":" + waterLevelTank2()
+        + ",\"waterLevelTank1\":" + String(waterlevel1)
+        + ",\"waterLevelTank2\":" + String(waterlevel2)
         +"}";
       
         httpSend(jsonStr);   // 每隔5秒發送一次JSON資料
     }
-
-  
 }
 
 double avergearray(int* arr, int number){
@@ -158,14 +158,14 @@ double avergearray(int* arr, int number){
         }
         for(i = 2; i < number; i++){
             if(arr[i] < min){
-                amount+=min;        //arr<min
+                amount += min;        //arr<min
                 min = arr[i];
             }else{
                 if(arr[i] > max){
-                    amount+=max;    //arr>max
+                    amount += max;    //arr>max
                     max = arr[i];
                 }else{
-                    amount+=arr[i]; //min<=arr<=max
+                    amount += arr[i]; //min<=arr<=max
                 }
             }//if
         }//for
@@ -174,23 +174,22 @@ double avergearray(int* arr, int number){
     return avg;
 }
 
-String checkWaterLevel(int a, int b, int c){
+int checkWaterLevel(int a, int b, int c){
 
     if (a==0 && b==0 && c==0){
         //Serial.print("FULL");
-        return "FULL";      
-    }
-    if (a==0 && b==0 && c==1){
+        return 3;      
+    }else if (a==0 && b==0 && c==1){
         //Serial.print("2");
-        return "2";
-    }
-    if (a==0 && b==1 && c==1){
+        return 2;
+    }else if (a==0 && b==1 && c==1){
         //Serial.print("1");
-        return "1";
-    }
-    if (a==1 && b==1 && c==1){
+        return 1;
+    }else if (a==1 && b==1 && c==1){
         //Serial.print("EMPTY");
-        return "EMPTY";
+        return 0;
+    }else{
+      return 0;
     }
 
     
@@ -199,29 +198,47 @@ String checkWaterLevel(int a, int b, int c){
 }
 
 //untest 水位副程式
-String waterLevelTank1(){
-  
-    int a,b,c;
+int waterLevelTank1(){
+ int a,b,c;
 
-    a = digitalRead(SW1[0]);
-    b = digitalRead(SW1[1]);
-    c = digitalRead(SW1[2]);
+    a=digitalRead(SW2[0]);
+    b=digitalRead(SW2[1]);
+    c=digitalRead(SW2[2]);
+
+    Serial.print(a);
+    Serial.print(b);
+    Serial.print(c);
+    Serial.print("\n");
     return checkWaterLevel(a,b,c);
-//Serial.print(a);
-//Serial.print(b);
-//Serial.print(c);
-//Serial.print("\n");
 
+//    if (a==0 && b==0 && c==0){
+//        Serial.println("FULL");
+//        return 3;      
+//    }else if (a==0 && b==0 && c==1){
+//        Serial.println("2");
+//        return 2;
+//    }else if (a==0 && b==1 && c==1){
+//        Serial.println("1");
+//        return 1;
+//    }else if (a==1 && b==1 && c==1){
+//        Serial.println("EMPTY");
+//        return 0;
+//    }else {
+//        return 0;  
+//    }
+//    Serial.print("\n");
 }
 
-String waterLevelTank2(){
+int waterLevelTank2(){
   
     int a,b,c;
 
     a = digitalRead(SW2[0]);
     b = digitalRead(SW2[1]);
     c = digitalRead(SW2[2]);
-    checkWaterLevel(a,b,c);
+    return checkWaterLevel(a,b,c);
+
+    
 //Serial.print(a);
 //Serial.print(b);
 //Serial.print(c);
