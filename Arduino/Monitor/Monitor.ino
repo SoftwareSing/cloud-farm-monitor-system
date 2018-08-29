@@ -31,10 +31,15 @@ const unsigned long interval = 2 * 1000L;
 byte mac[] = {0x00, 0xa0, 0x96, 0x7b, 0x87, 0xb3};
 
 // 要連接的伺服器IP位址，這你們要給我
-IPAddress server(192, 168, 0, 196);
+IPAddress server(172, 23, 1, 31);
 
 // 本機的IP位址，也是你們要給我
-IPAddress ip(192, 168, 0, 101);
+IPAddress ip(172, 23, 99, 20);
+//B class時要用這個
+//default是C class的subnet跟gateway
+IPAddress subnet(255, 255, 0, 0);
+
+IPAddress gateway(172, 23, 39, 39);
 
 // 初始化乙太用戶端
 EthernetClient client;
@@ -46,7 +51,7 @@ void setup(){
         pinMode(SW1[i],INPUT);//指撥開關腳位水位
         pinMode(SW2[i],INPUT);
     }
-    Ethernet.begin(mac, ip);  // 初始化乙太網路連線
+    Ethernet.begin(mac, ip,subnet , gateway);  // 初始化乙太網路連線
 
     // 等待一秒鐘，讓乙太網路卡有時間進行初始化
     delay(1000);
