@@ -1,4 +1,5 @@
-import { io } from "control/io";
+import { io } from "~/control/io";
+
 
 const five = require("johnny-five");
 

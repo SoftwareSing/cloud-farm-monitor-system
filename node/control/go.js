@@ -1,8 +1,8 @@
-import { moveToPoint } from "control/detail/controlPoint";
-import { changeLedState } from "control/detail/changeLedState";
-import { controlWaterPump } from "control/detail/controlWaterPump";
-import { controlFertilizerPump } from "control/detail/controlFertilizerPump";
-import { setBoardReady } from "control/setBoardReady";
+import { setBoardReady } from "~/control/setBoardReady";
+import { moveToPoint } from "~/control/detail/controlPoint";
+import { controlWaterPump } from "~/control/detail/controlWaterPump";
+import { controlFertilizerPump } from "~/control/detail/controlFertilizerPump";
+import { changeLedState } from "~/control/detail/changeLedState";
 
 /**
  * @param {Object} point { x, y, z }

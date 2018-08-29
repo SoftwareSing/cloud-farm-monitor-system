@@ -1,6 +1,7 @@
-import { backToPoint } from "control/detail/controlPoint";
-import { changeLedState } from "control/detail/changeLedState";
-import { setBoardReady } from "control/setBoardReady";
+import { setBoardReady } from "~/control/setBoardReady";
+import { backToPoint } from "~/control/detail/controlPoint";
+import { changeLedState } from "~/control/detail/changeLedState";
+
 
 const five = require("johnny-five");
 

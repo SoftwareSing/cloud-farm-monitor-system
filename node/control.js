@@ -1,5 +1,5 @@
-import { go } from "control/go";
-import { back } from "control/back";
+import { go } from "~/control/go";
+import { back } from "~/control/back";
 
 const VirtualSerialPort = require("udp-serial").SerialPort;
 const firmata = require("firmata");
