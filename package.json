@@ -1,5 +1,5 @@
 {
     "scripts": {
-        "start": "babel-node ./node/control.js"
+        "start": "babel-node ./node/http.js"
     }
 }
