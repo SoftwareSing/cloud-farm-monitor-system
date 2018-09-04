@@ -1,5 +1,18 @@
 {
+    "name": "cloud-farm-monitor-system-master",
     "scripts": {
         "start": "babel-node ./node/control.js"
+    },
+    "dependencies": {
+        "firmata": "^0.19.1",
+        "johnny-five": "^1.0.0",
+        "udp-serial": "^0.2.0",
+        "underscore": "^1.9.1"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-plugin-root-import": "^6.1.0",
+        "babel-preset-env": "^1.7.0",
+        "eslint": "^5.5.0"
     }
 }
