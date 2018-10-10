@@ -1,11 +1,11 @@
-import { goPoint } from "~/control/commands/point";
+import { goPoint, backPoint } from "~/control/commands/point";
 import { changeLedState } from "~/control/commands/changeLedState";
 import { controlFertilizerPump } from "~/control/commands/controlFertilizerPump";
 import { controlWaterPump } from "~/control/commands/controlWaterPump";
 
 const xyzinput = {
-    x: 1000, //走1000步
-    y: 1000,
+    x: 5000, //走1000步
+    y: 5000,
     z: 0
 };
 const water = {
@@ -30,5 +30,12 @@ const LED = {
 
 changeLedState(LED);
 goPoint(xyzinput);
-controlWaterPump(water);
-controlFertilizerPump(fertilizer);
+backPoint(xyzinput);
+goPoint(xyzinput);
+backPoint(xyzinput);
+goPoint(xyzinput);
+backPoint(xyzinput);
+goPoint(xyzinput);
+backPoint(xyzinput);
+//controlWaterPump(water);
+//controlFertilizerPump(fertilizer);
