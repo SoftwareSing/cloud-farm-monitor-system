@@ -1,7 +1,7 @@
 const five = require("johnny-five");
 const _ = require("underscore");
 
-export function changeLedState({red, green, blue}) {
+export function _changeLedState({red, green, blue}, callback) {
     const leds = {
         red: {isOn: red, entity: new five.Led(17)},
         green: {isOn: green, entity: new five.Led(23)},
@@ -14,4 +14,8 @@ export function changeLedState({red, green, blue}) {
             entity.off();
         }
     });
+
+    if (typeof callback === "function") {
+        callback();
+    }
 }
