@@ -92,13 +92,13 @@ export function _backToPoint({x, y, z}, callback) {
 }
 
 const steppers = {
-    x: null,
-    y: null,
-    z: null
+    stepperX: null,
+    stepperY: null,
+    stepperZ: null
 };
 function getSteppers() {
-    if (!steppers.x) {
-        steppers.x = new five.Stepper({
+    if (!steppers.stepperX) {
+        steppers.stepperX = new five.Stepper({
             type: five.Stepper.TYPE.DRIVER,
             stepsPerRev: 500,
             pins: {
@@ -107,8 +107,8 @@ function getSteppers() {
             }
         });
     }
-    if (!steppers.y) {
-        steppers.y = new five.Stepper({
+    if (!steppers.stepperY) {
+        steppers.stepperY = new five.Stepper({
             type: five.Stepper.TYPE.DRIVER,
             stepsPerRev: 500,
             pins: {
@@ -117,8 +117,8 @@ function getSteppers() {
             }
         });
     }
-    if (!steppers.z) {
-        steppers.z = new five.Stepper({
+    if (!steppers.stepperZ) {
+        steppers.stepperZ = new five.Stepper({
             type: five.Stepper.TYPE.DRIVER,
             stepsPerRev: 200,
             pins: {
