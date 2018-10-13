@@ -91,33 +91,44 @@ export function _backToPoint({x, y, z}, callback) {
     }
 }
 
+const steppers = {
+    x: null,
+    y: null,
+    z: null
+};
 function getSteppers() {
-    const stepperX = new five.Stepper({
-        type: five.Stepper.TYPE.DRIVER,
-        stepsPerRev: 500,
-        pins: {
-            step: 54,
-            dir: 55
-        }
-    });
-    const stepperY = new five.Stepper({
-        type: five.Stepper.TYPE.DRIVER,
-        stepsPerRev: 500,
-        pins: {
-            step: 26,
-            dir: 28
-        }
-    });
-    const stepperZ = new five.Stepper({
-        type: five.Stepper.TYPE.DRIVER,
-        stepsPerRev: 200,
-        pins: {
-            step: 36,
-            dir: 34
-        }
-    });
+    if (!steppers.x) {
+        steppers.x = new five.Stepper({
+            type: five.Stepper.TYPE.DRIVER,
+            stepsPerRev: 500,
+            pins: {
+                step: 54,
+                dir: 55
+            }
+        });
+    }
+    if (!steppers.y) {
+        steppers.y = new five.Stepper({
+            type: five.Stepper.TYPE.DRIVER,
+            stepsPerRev: 500,
+            pins: {
+                step: 26,
+                dir: 28
+            }
+        });
+    }
+    if (!steppers.z) {
+        steppers.z = new five.Stepper({
+            type: five.Stepper.TYPE.DRIVER,
+            stepsPerRev: 200,
+            pins: {
+                step: 36,
+                dir: 34
+            }
+        });
+    }
 
-    return {stepperX, stepperY, stepperZ};
+    return steppers;
 }
 
 function autoCheckDoneThenCallback(callback) {
