@@ -1,6 +1,6 @@
 import { setBoardReady } from "~/control/setBoardReady";
-import { backToPoint } from "~/control/detail/controlPoint";
-import { changeLedState } from "~/control/detail/changeLedState";
+import { _backToPoint } from "~/control/detail/_controlPoint";
+import { _changeLedState } from "~/control/detail/_changeLedState";
 
 
 const five = require("johnny-five");
@@ -13,8 +13,8 @@ const five = require("johnny-five");
 export function back(point, led) {
     setBoardReady(() => {
         turnOffAllPump();
-        backToPoint(point);
-        changeLedState(led);
+        _backToPoint(point);
+        _changeLedState(led);
     });
 }
 
