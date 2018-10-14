@@ -9,9 +9,10 @@ export function _changeLedState({red, green, blue}, callback) {
     };
     _.each(leds, ({isOn, entity}) => {
         if (isOn) {
-            entity.on();
-        } else {
+            // 因控制接地端，所以 off 為亮
             entity.off();
+        } else {
+            entity.on();
         }
     });
 
