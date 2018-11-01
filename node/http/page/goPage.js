@@ -7,7 +7,7 @@ const body = `
                     const y = document.querySelector(\`input[name="y"]\`).value;
                     const z = document.querySelector(\`input[name="z"]\`).value;
                     alert(\`go x=\${x}&y=\${y}&z=\${z}\`);
-                    window.location.href = \`/methodGo?x=\${x}&y=\${y}&z=\${z}\`;
+                    window.location.href = \`/method/Go?x=\${x}&y=\${y}&z=\${z}\`;
                 }
             </script>
             x <input type="text" name="x"><br />
