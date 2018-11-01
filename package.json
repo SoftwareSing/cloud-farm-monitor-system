@@ -1,7 +1,7 @@
 {
     "name": "cloud-farm-monitor-system-master",
     "scripts": {
-        "start": "babel-node ./node/http.js"
+        "start": "babel-node ./node/http/http.js"
     },
     "dependencies": {
         "firmata": "^0.19.1",
