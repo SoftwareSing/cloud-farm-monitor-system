@@ -10,7 +10,7 @@ const xyzinput = {
 };
 const water = {
     state: true, //true為開
-    time: 1000 //1000等於1秒
+    time: 5000 //1000等於1秒
 };
 
 const fertilizer = {
@@ -31,11 +31,5 @@ const LED = {
 changeLedState(LED);
 goPoint(xyzinput);
 backPoint(xyzinput);
-goPoint(xyzinput);
-backPoint(xyzinput);
-goPoint(xyzinput);
-backPoint(xyzinput);
-goPoint(xyzinput);
-backPoint(xyzinput);
-//controlWaterPump(water);
+controlWaterPump(water);
 //controlFertilizerPump(fertilizer);
