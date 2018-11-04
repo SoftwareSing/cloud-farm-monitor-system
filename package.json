@@ -1,10 +1,15 @@
 {
     "name": "cloud-farm-monitor-system-master",
     "scripts": {
-        "start": "babel-node ./node/http/http.js"
+        "start": "babel-node ./node/http/http.js",
+        "http": "babel-node ./node/http/http.js",
+        "control": "babel-node ./node/control.js",
+        "build": "babel ./node -d ./build",
+        "serve": "node ./build/http/http.js",
+        "msvs": "npm install johnny-five --msvs_version=2012"
     },
     "dependencies": {
-        "firmata": "^0.19.1",
+        "firmata": "^1.0.0",
         "johnny-five": "^1.0.0",
         "udp-serial": "^0.2.0",
         "underscore": "^1.9.1"
