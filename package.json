@@ -4,7 +4,7 @@
         "start": "babel-node ./node/http/http.js"
     },
     "dependencies": {
-        "firmata": "^0.19.1",
+        "firmata": "^1.0.0",
         "johnny-five": "^1.0.0",
         "udp-serial": "^0.2.0",
         "underscore": "^1.9.1"
