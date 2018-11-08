@@ -4,13 +4,17 @@ export function _controlFertilizerPump({state, time}, board, callback) {
     const fertilizerPumprelay = new five.Relay(27);
 
     if (state === true) {
-        fertilizerPumprelay.toggle();
-        console.log(`fertilizer: ${fertilizerPumprelay.isOn}`);
+        while (!fertilizerPumprelay.isOn) {
+            fertilizerPumprelay.on();
+        }
+        console.log(`fertilizer (should on): ${fertilizerPumprelay.isOn}`);
     }
 
     const offFun = () => {
-        fertilizerPumprelay.toggle();
-        console.log("fertilizer off");
+        while (fertilizerPumprelay.isOn) {
+            fertilizerPumprelay.off();
+        }
+        console.log(`fertilizer (should off): ${fertilizerPumprelay.isOn}`);
 
         if (typeof callback === "function") {
             callback();
