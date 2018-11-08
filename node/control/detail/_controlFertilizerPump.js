@@ -7,12 +7,14 @@ export function _controlFertilizerPump({state, time}, board, callback) {
         fertilizerPumprelay.on();
     }
 
-    board.wait(time, function() {
+    const offFun = function() {
         fertilizerPumprelay.off();
         console.log("fertilizer off");
 
         if (typeof callback === "function") {
             callback();
         }
-    });
+    };
+    setTimeout(offFun, time);
+    // board.wait(time, offFun);
 }
