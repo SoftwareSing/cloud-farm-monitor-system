@@ -7,7 +7,7 @@ export function _controlFertilizerPump({state, time}, board, callback) {
         fertilizerPumprelay.on();
     }
 
-    const offFun = function() {
+    const offFun = () => {
         fertilizerPumprelay.off();
         console.log("fertilizer off");
 
