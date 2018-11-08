@@ -6,7 +6,7 @@ const url = require("url");
 export function methodControlFertilizerPump(req, res) {
     const { query } = url.parse(req.url, true);
     const state = query.state === "true";
-    const time = Number(time) || 0;
+    const time = Number(query.time) || 0;
     console.log(`method controlFertilizerPump: ${state} ${time}`);
     controlFertilizerPump({ state, time });
     res.end();

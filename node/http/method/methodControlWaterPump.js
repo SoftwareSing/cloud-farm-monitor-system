@@ -6,7 +6,7 @@ const url = require("url");
 export function methodControlWaterPump(req, res) {
     const { query } = url.parse(req.url, true);
     const state = query.state === "true";
-    const time = Number(time) || 0;
+    const time = Number(query.time) || 0;
     console.log(`method controlWaterPump: ${state} ${time}`);
     controlWaterPump({ state, time });
     res.end();
