@@ -6,10 +6,11 @@
         "control": "babel-node ./control-node-server/control.js",
         "build-control": "babel ./control-node-server -d ./build/control-node-server",
         "serve-control": "node ./build/control-node-server/http/http.js",
-        "build-monitor": "babel ./monitor-node-server -d ./build/monitor-node-server",
+        "build-monitor": "babel ./monitor-node-server -d ./build/monitor-node-server && npm run build-config",
         "serve-monitor": "node ./build/monitor-node-server/index.js",
+        "build-config": "babel ./config -d ./build/config",
         "msvs": "npm install johnny-five --msvs_version=2012",
-        "test": "babel-node ./monitor-node-server/test.js"
+        "monitor": "babel-node ./monitor-node-server/index.js"
     },
     "dependencies": {
         "body-parser": "^1.18.3",

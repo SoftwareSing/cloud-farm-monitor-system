@@ -56,7 +56,10 @@ app.listen(5438, function(req, res) {
 
 
 function autoUpdate() {
-    updateToDb(json);
+    if (json !== "") {
+        updateToDb(json);
+        console.log("success auto update data to firebase");
+    }
     setTimeout(autoUpdate, 60000);
 }
 autoUpdate();
