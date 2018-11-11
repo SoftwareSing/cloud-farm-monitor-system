@@ -3,7 +3,7 @@
     "plugins": [
         ["babel-plugin-root-import", {
             "rootPathPrefix": "~",
-            "rootPathSuffix": "node"
+            "rootPathSuffix": "control-node-server"
         }]
     ]
 }
