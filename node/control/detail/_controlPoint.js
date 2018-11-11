@@ -28,8 +28,8 @@ export function _moveToPoint({x, y, z}, callback) {
             stepperStates.stepperX = states.done;
         });
 
-    stepperZ.rpm(180).ccw()
-        .step(z, function() { //ccw上升
+    stepperZ.rpm(180).cw()
+        .step(z, function() { //cw下降
             console.log("z done");
             stepperStates.stepperZ = states.done;
         });
@@ -37,13 +37,7 @@ export function _moveToPoint({x, y, z}, callback) {
     stepperY.rpm(180).cw()
         .step(y, function() {
             console.log("y done");
-
-            stepperZ.rpm(180).cw()
-                .step(z, function() { //cw下降
-                    console.log("z done");
-
-                    stepperStates.stepperY = states.done;
-                });
+            stepperStates.stepperY = states.done;
         });
 
     if (typeof callback === "function") {
@@ -69,7 +63,7 @@ export function _backToPoint({x, y, z}, callback) {
         });
 
     stepperZ.rpm(180).ccw()
-        .step(z, function() {
+        .step(z, function() { // ccw上升
             console.log("z done");
             stepperStates.stepperZ = states.done;
         });
@@ -77,13 +71,7 @@ export function _backToPoint({x, y, z}, callback) {
     stepperY.rpm(180).ccw()
         .step(y, function() {
             console.log("y done");
-
-            stepperZ.rpm(180).cw()
-                .step(z, function() {
-                    console.log("z done");
-
-                    stepperStates.stepperY = states.done;
-                });
+            stepperStates.stepperY = states.done;
         });
 
     if (typeof callback === "function") {

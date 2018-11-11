@@ -30,9 +30,13 @@ export function doNextCommand() {
 export function startDoCommand() {
     if (!isRuningCommand) {
         isRuningCommand = true;
-        setBoardReady((newBoard) => {
-            board = newBoard;
+        if (!board) {
+            setBoardReady((newBoard) => {
+                board = newBoard;
+                doNextCommand();
+            });
+        } else {
             doNextCommand();
-        });
+        }
     }
 }

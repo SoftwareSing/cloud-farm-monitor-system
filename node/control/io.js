@@ -2,7 +2,7 @@ const VirtualSerialPort = require("udp-serial").SerialPort;
 const firmata = require("firmata");
 
 const sp = new VirtualSerialPort({
-    host: "172.23.99.210"
+    host: "172.23.99.10"
 });
 console.log("hi");
 export const io = new firmata.Board(sp);
