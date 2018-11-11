@@ -8,6 +8,9 @@
             }, {
                 "rootPathPrefix": "#",
                 "rootPathSuffix": "monitor-node-server"
+            }, {
+                "rootPathPrefix": "@",
+                "rootPathSuffix": "config"
             }]
         }]
     ]

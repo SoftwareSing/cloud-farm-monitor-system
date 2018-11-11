@@ -67,3 +67,6 @@ test.js
 
 # babel build
 build/
+
+#config
+config/
