@@ -11,6 +11,8 @@
         "msvs": "npm install johnny-five --msvs_version=2012"
     },
     "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.4",
         "firmata": "^1.0.0",
         "johnny-five": "^1.0.0",
         "udp-serial": "^0.2.0",
