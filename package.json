@@ -8,11 +8,13 @@
         "serve-control": "node ./build/control-node-server/http/http.js",
         "build-monitor": "babel ./monitor-node-server -d ./build/monitor-node-server",
         "serve-monitor": "node ./build/monitor-node-server/index.js",
-        "msvs": "npm install johnny-five --msvs_version=2012"
+        "msvs": "npm install johnny-five --msvs_version=2012",
+        "test": "babel-node ./monitor-node-server/test.js"
     },
     "dependencies": {
         "body-parser": "^1.18.3",
         "express": "^4.16.4",
+        "firebase": "^5.5.8",
         "firmata": "^1.0.0",
         "johnny-five": "^1.0.0",
         "udp-serial": "^0.2.0",

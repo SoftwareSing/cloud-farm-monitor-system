@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./control-node-server/*"],
-      "#/*": ["./monitor-node-server/*"]
+      "#/*": ["./monitor-node-server/*"],
+      "@/*": ["./config/*"]
     }
   }
 }
