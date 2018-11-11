@@ -21,7 +21,7 @@ app.use(bodyParser.json()); //解析POST參數的JSON資料
 //     // 確認有收到溫度和濕度值（兩者都不是undefined）
 //     if (temp !== undefined && humid !== undefined) {
 //         //印出值
-//         console.log("溫度 :" + temp + "，濕度 :" + humid + ",土地濕度1 :" + soidhumid1 + ",土地濕度2 :" + soidhumid2 + " PH值 :" + ph + " 水位1:" + waterLevelTank1 + " 水位2:" + waterLevelTank2);
+//         console.log("溫度 :" + temp + "，濕度 :" + humid + ",土地濕度1 :" + soidhumid1 + ",土地濕度2 :" + soidhumid2 + "PH值:" + ph + " 水位1:" + waterLevelTank1 + " 水位2:" + waterLevelTank2);
 //         res.send("溫度: " + temp + "°C，濕度： " + humid + ",土地濕度1 :" + soidhumid1 + ",土地濕度2 :" + soidhumid2 + "PH值" + ph + "水位1:" + waterLevelTank1 + " 水位2:" + waterLevelTank2);
 //     } else {
 //         console.log("沒收到資料！");

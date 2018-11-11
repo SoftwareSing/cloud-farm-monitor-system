@@ -2,8 +2,13 @@
     "presets": ["env"],
     "plugins": [
         ["babel-plugin-root-import", {
-            "rootPathPrefix": "~",
-            "rootPathSuffix": "node"
+            "paths": [{
+                "rootPathPrefix": "~",
+                "rootPathSuffix": "control-node-server"
+            }, {
+                "rootPathPrefix": "#",
+                "rootPathSuffix": "monitor-node-server"
+            }]
         }]
     ]
 }
