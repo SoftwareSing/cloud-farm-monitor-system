@@ -3,7 +3,7 @@ const five = require("johnny-five");
 export function _controlFertilizerPump({state, time}, board, callback) {
     const fertilizerPumpMotor = new five.Motor({
         pins: {
-            pwm: 29,
+            pwm: 11,
             dir: 25
         }
     });
