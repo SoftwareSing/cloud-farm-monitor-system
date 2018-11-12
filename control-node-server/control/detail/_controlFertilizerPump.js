@@ -1,11 +1,15 @@
 const five = require("johnny-five");
 
 export function _controlFertilizerPump({state, time}, board, callback) {
-    const fertilizerPumpMotor = new five.Motor({ 
+    const fertilizerPumpMotor = new five.Motor({
         pins: {
             pwm: 29,
             dir: 25
         }
+    });
+
+    board.repl.inject({
+        motor: fertilizerPumpMotor
     });
 
     if (state === true) {
