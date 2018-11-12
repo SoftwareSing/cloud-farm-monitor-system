@@ -22,8 +22,8 @@ DHT dht(dhtPin, dhtType);
 //SHT1x sht1x(2, 3); //前面是data後面是clock //燒毀中
 
 //const byte dataPin = 8;//dht11 pin
-const int SW1[3] = {6, 5, 4};//第一組水位
-const int SW2[3] = {9, 8, 7};
+const int SW1[3] = {4, 5, 6};//第一組水位
+const int SW2[3] = {7, 8, 9};
 
 unsigned long past = 0; 
 const unsigned long interval = 2 * 1000L;
