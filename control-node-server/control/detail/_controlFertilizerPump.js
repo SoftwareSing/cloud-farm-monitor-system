@@ -1,25 +1,26 @@
 const five = require("johnny-five");
 
 export function _controlFertilizerPump({state, time}, board, callback) {
-    const fertilizerPumprelay = new five.Relay(27);
+    const fertilizerPumpMotor = new five.Motor({
+        pins: {
+            pwm: 6,
+            dir: 27
+        }
+    });
 
     if (state === true) {
-        while (!fertilizerPumprelay.isOn) {
-            fertilizerPumprelay.on();
-        }
-        console.log(`fertilizer (should on): ${fertilizerPumprelay.isOn}`);
+        fertilizerPumpMotor.stop();
+        console.log(`fertilizer (motor): forward`);
     }
 
-    const offFun = () => {
-        while (fertilizerPumprelay.isOn) {
-            fertilizerPumprelay.off();
-        }
-        console.log(`fertilizer (should off): ${fertilizerPumprelay.isOn}`);
+    const offFunction = () => {
+        fertilizerPumpMotor.forward(255);
+        console.log(`fertilizer (motor): stop`);
 
         if (typeof callback === "function") {
             callback();
         }
     };
-    setTimeout(offFun, time);
+    setTimeout(offFunction, time);
     // board.wait(time, offFun);
 }

@@ -1,18 +1,25 @@
 const five = require("johnny-five");
 
 export function _controlWaterPump({state, time}, board, callback) {
-    const waterPumprelay = new five.Relay(25);
+    const waterPumpMotor = new five.Motor({
+        pins: {
+            pwm: 11,
+            dir: 25
+        }
+    });
 
     if (state === true) {
-        waterPumprelay.on();
+        console.log("water on");
+        waterPumpMotor.stop();
     }
 
-    board.wait(time, function() {
-        waterPumprelay.off();
+    const offFunction = () => {
+        waterPumpMotor.forward(255);
         console.log("water off");
 
         if (typeof callback === "function") {
             callback();
         }
-    });
+    };
+    setTimeout(offFunction, time);
 }
