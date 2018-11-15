@@ -2,7 +2,7 @@
 
 # http
 ```
-/method/changeLedState?red=true&green=true&blue=true
+/method/changeLedState?color=#FFFFFF
 ```
 ```
 /method/controlFertilizerPump?state=true&time=1000
