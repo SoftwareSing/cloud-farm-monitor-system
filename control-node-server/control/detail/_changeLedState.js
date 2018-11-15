@@ -12,7 +12,8 @@ export function _changeLedState(color, callback) {
             red: 4,
             green: 5,
             blue: 3
-        }
+        },
+        isAnode: true
     });
     led.on();
     led.color(color);
