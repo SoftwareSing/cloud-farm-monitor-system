@@ -2,6 +2,11 @@ const five = require("johnny-five");
 const _ = require("underscore");
 
 export function _changeLedState(color, callback) {
+    if (color === "") {
+        color = "FFFFFF";
+    }
+    color = "#" + color;
+
     const led = new five.Led.RGB({
         pins: {
             red: 4,
