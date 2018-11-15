@@ -1,9 +1,9 @@
 import { addCommand, doNextCommand, startDoCommand } from "~/control/commands/commands";
 import { _changeLedState } from "~/control/detail/_changeLedState";
 
-export function changeLedState({ red, green, blue }) {
+export function changeLedState(color) {
     addCommand(() => {
-        _changeLedState({ red, green, blue }, doNextCommand);
+        _changeLedState(color, doNextCommand);
     });
 
     startDoCommand();
