@@ -6,7 +6,7 @@
 #include "DHT.h"
 
 #define SensorPin A2            //pH meter Analog output to Arduino Analog Input 0
-#define Offset 0.00    
+#define Offset 0.43    
 #define ArrayLenth 40    //times of collection
 #define samplingInterval 20
 //#define dataPin 3
@@ -113,12 +113,12 @@ void loop(){
     float airhum = dht.readHumidity();
     int moisture1 = analogRead(A0);
     int moisture2 = analogRead(A5);
-    //double ph = 3.5*voltage + Offset;
-    double ph = 7.01;
+    double ph = 3.5*voltage + Offset;
+    //double ph = 7.01;
     int waterlevel1 = waterLevelTank1();
     int waterlevel2 = waterLevelTank2();
-       
-    Serial.println("111");
+    Serial.print("ph:");
+    Serial.println(ph);
     //String jsonStr = "{\"temp\":11,\"humid\":11}";  // 定義JSON字串
     
     if (millis() - past > interval) {
