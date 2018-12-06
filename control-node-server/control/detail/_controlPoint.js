@@ -28,7 +28,7 @@ export function _moveToPoint({x, y, z}, callback) {
             stepperStates.stepperX = states.done;
         });
 
-    stepperZ.rpm(180).cw()
+    stepperZ.rpm(180).ccw()
         .step(z, function() { //cw下降
             console.log("z done");
             stepperStates.stepperZ = states.done;
@@ -62,7 +62,7 @@ export function _backToPoint({x, y, z}, callback) {
             stepperStates.stepperX = states.done;
         });
 
-    stepperZ.rpm(180).ccw()
+    stepperZ.rpm(180).cw()
         .step(z, function() { // ccw上升
             console.log("z done");
             stepperStates.stepperZ = states.done;
