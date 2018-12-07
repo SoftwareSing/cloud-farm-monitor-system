@@ -22,8 +22,8 @@ DHT dht(dhtPin, dhtType);
 //SHT1x sht1x(2, 3); //前面是data後面是clock //燒毀中
 
 //const byte dataPin = 8;//dht11 pin
-const int SW1[3] = {6, 5, 4};//第一組水位
-const int SW2[3] = {9, 8, 7};
+const int SW1[3] = {4, 5, 6};//第一組水位
+const int SW2[3] = {7, 8, 9};
 
 unsigned long past = 0; 
 const unsigned long interval = 2 * 1000L;
@@ -31,7 +31,7 @@ const unsigned long interval = 2 * 1000L;
 byte mac[] = {0x00, 0xa0, 0x96, 0x7b, 0x87, 0xb3};
 
 // 要連接的伺服器IP位址，這你們要給我
-IPAddress server(172, 23, 1, 31);
+IPAddress server(172, 23, 99, 99);
 
 // 本機的IP位址，也是你們要給我
 IPAddress ip(172, 23, 99, 20);
@@ -182,16 +182,16 @@ double avergearray(int* arr, int number){
 int checkWaterLevel(int a, int b, int c){
 
     if (a==0 && b==0 && c==0){
-        //Serial.print("FULL");
+        Serial.print("FULL");
         return 3;      
     }else if (a==0 && b==0 && c==1){
-        //Serial.print("2");
+        Serial.print("2");
         return 2;
     }else if (a==0 && b==1 && c==1){
-        //Serial.print("1");
+        Serial.print("1");
         return 1;
     }else if (a==1 && b==1 && c==1){
-        //Serial.print("EMPTY");
+        Serial.print("EMPTY");
         return 0;
     }else{
       return 0;
@@ -206,9 +206,9 @@ int checkWaterLevel(int a, int b, int c){
 int waterLevelTank1(){
  int a,b,c;
 
-    a=digitalRead(SW2[0]);
-    b=digitalRead(SW2[1]);
-    c=digitalRead(SW2[2]);
+    a=digitalRead(SW1[0]);
+    b=digitalRead(SW1[1]);
+    c=digitalRead(SW1[2]);
 
     Serial.print(a);
     Serial.print(b);
