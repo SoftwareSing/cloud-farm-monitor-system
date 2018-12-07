@@ -22,7 +22,7 @@ DHT dht(dhtPin, dhtType);
 //SHT1x sht1x(2, 3); //前面是data後面是clock //燒毀中
 
 //const byte dataPin = 8;//dht11 pin
-const int SW1[3] = {4, 5, 6};//第一組水位
+const int SW1[3] = {3, 5, 6};//第一組水位
 const int SW2[3] = {7, 8, 9};
 
 unsigned long past = 0; 
@@ -182,16 +182,16 @@ double avergearray(int* arr, int number){
 int checkWaterLevel(int a, int b, int c){
 
     if (a==0 && b==0 && c==0){
-        Serial.print("FULL");
+        Serial.println("FULL");
         return 3;      
     }else if (a==0 && b==0 && c==1){
-        Serial.print("2");
+        Serial.println("2");
         return 2;
     }else if (a==0 && b==1 && c==1){
-        Serial.print("1");
+        Serial.println("1");
         return 1;
     }else if (a==1 && b==1 && c==1){
-        Serial.print("EMPTY");
+        Serial.println("EMPTY");
         return 0;
     }else{
       return 0;
@@ -209,7 +209,7 @@ int waterLevelTank1(){
     a=digitalRead(SW1[0]);
     b=digitalRead(SW1[1]);
     c=digitalRead(SW1[2]);
-
+    Serial.println("Tank1");
     Serial.print(a);
     Serial.print(b);
     Serial.print(c);
@@ -237,6 +237,13 @@ int waterLevelTank1(){
 int waterLevelTank2(){
   
     int a,b,c;
+
+    Serial.println("Tank2");
+
+    Serial.print(a);
+    Serial.print(b);
+    Serial.print(c);
+    Serial.print("\n");
 
     a = digitalRead(SW2[0]);
     b = digitalRead(SW2[1]);
