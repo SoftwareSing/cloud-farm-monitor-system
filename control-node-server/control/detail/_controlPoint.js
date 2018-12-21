@@ -1,15 +1,15 @@
 const five = require("johnny-five");
 
 const steppersInfo = {
-    stepperX: {
+    x: {
         moving: false,
         point: 0
     },
-    stepperY: {
+    y: {
         moving: false,
         point: 0
     },
-    stepperZ: {
+    z: {
         moving: false,
         point: 0
     }
@@ -22,9 +22,9 @@ function setStepperInfo(stepper, moving, moveStep = 0) {
 
 export function getStepperPoints() {
     return {
-        x: steppersInfo.stepperX.point,
-        y: steppersInfo.stepperY.point,
-        z: steppersInfo.stepperZ.point
+        x: steppersInfo.x.point,
+        y: steppersInfo.y.point,
+        z: steppersInfo.z.point
     };
 }
 
@@ -35,26 +35,26 @@ export function getStepperPoints() {
  */
 export function _moveToPoint({x, y, z}, callback) {
     const {stepperX, stepperY, stepperZ} = getSteppers();
-    setStepperInfo("stepperX", true);
-    setStepperInfo("stepperY", true);
-    setStepperInfo("stepperZ", true);
+    setStepperInfo("x", true);
+    setStepperInfo("y", true);
+    setStepperInfo("z", true);
 
     stepperX.rpm(180).cw()
         .step(x, function() { //cw還是前進
             console.log("x done");
-            setStepperInfo("stepperX", false, x);
+            setStepperInfo("x", false, x);
         });
 
     stepperZ.rpm(180).ccw()
         .step(z, function() { //cw下降
             console.log("z done");
-            setStepperInfo("stepperZ", false, z);
+            setStepperInfo("z", false, z);
         });
 
     stepperY.rpm(180).cw()
         .step(y, function() {
             console.log("y done");
-            setStepperInfo("stepperY", false, y);
+            setStepperInfo("y", false, y);
         });
 
     if (typeof callback === "function") {
@@ -69,26 +69,26 @@ export function _moveToPoint({x, y, z}, callback) {
  */
 export function _backToPoint({x, y, z}, callback) {
     const {stepperX, stepperY, stepperZ} = getSteppers();
-    setStepperInfo("stepperX", true);
-    setStepperInfo("stepperY", true);
-    setStepperInfo("stepperZ", true);
+    setStepperInfo("x", true);
+    setStepperInfo("y", true);
+    setStepperInfo("z", true);
 
     stepperX.rpm(180).ccw()
         .step(x, function() {
             console.log("x done");
-            setStepperInfo("stepperX", false, x * -1);
+            setStepperInfo("x", false, x * -1);
         });
 
     stepperZ.rpm(180).cw()
         .step(z, function() { // ccw上升
             console.log("z done");
-            setStepperInfo("stepperZ", false, z * -1);
+            setStepperInfo("z", false, z * -1);
         });
 
     stepperY.rpm(180).ccw()
         .step(y, function() {
             console.log("y done");
-            setStepperInfo("stepperY", false, y * -1);
+            setStepperInfo("y", false, y * -1);
         });
 
     if (typeof callback === "function") {
@@ -145,5 +145,5 @@ function autoCheckDoneThenCallback(callback) {
 }
 
 function isAllDone() {
-    return (!steppersInfo.stepperX.moving) && (!steppersInfo.stepperY.moving) && (!steppersInfo.stepperZ.moving);
+    return (!steppersInfo.x.moving) && (!steppersInfo.y.moving) && (!steppersInfo.z.moving);
 }
