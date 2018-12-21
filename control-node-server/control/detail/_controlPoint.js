@@ -1,3 +1,5 @@
+import { updateSteppersInfoToDb, getSteppersInfoFromDb } from "~/control/db/steppersInfo";
+
 const five = require("johnny-five");
 
 const steppersInfo = {
@@ -138,6 +140,7 @@ function getSteppers() {
 
 function autoCheckDoneThenCallback(callback) {
     if (isAllDone()) {
+        updateInfoToDb();
         callback();
     } else {
         setTimeout(autoCheckDoneThenCallback, 500, callback);
@@ -147,3 +150,21 @@ function autoCheckDoneThenCallback(callback) {
 function isAllDone() {
     return (!steppersInfo.x.moving) && (!steppersInfo.y.moving) && (!steppersInfo.z.moving);
 }
+
+
+function updateInfoToDb() {
+    updateSteppersInfoToDb({
+        x: { point: steppersInfo.x.point },
+        y: { point: steppersInfo.y.point },
+        z: { point: steppersInfo.z.point }
+    });
+}
+
+function getInfoFromDb() {
+    getSteppersInfoFromDb(({ x, y, z }) => {
+        steppersInfo.x.point = x.point;
+        steppersInfo.y.point = y.point;
+        steppersInfo.z.point = z.point;
+    });
+}
+getInfoFromDb();
