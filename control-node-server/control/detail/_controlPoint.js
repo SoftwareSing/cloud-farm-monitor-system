@@ -1,15 +1,32 @@
 const five = require("johnny-five");
 
-const states = {
-    done: "done",
-    moving: "moving"
+const steppersInfo = {
+    stepperX: {
+        moving: false,
+        point: 0
+    },
+    stepperY: {
+        moving: false,
+        point: 0
+    },
+    stepperZ: {
+        moving: false,
+        point: 0
+    }
 };
 
-const stepperStates = {
-    stepperX: states.done,
-    stepperY: states.done,
-    stepperZ: states.done
-};
+function setStepperInfo(stepper, moving, moveStep = 0) {
+    steppersInfo[stepper].point += moveStep;
+    steppersInfo[stepper].moving = moving;
+}
+
+export function getStepperPoints() {
+    return {
+        x: steppersInfo.stepperX.point,
+        y: steppersInfo.stepperY.point,
+        z: steppersInfo.stepperZ.point
+    };
+}
 
 /**
  * @param {Object} point { x, y, z }
@@ -18,26 +35,26 @@ const stepperStates = {
  */
 export function _moveToPoint({x, y, z}, callback) {
     const {stepperX, stepperY, stepperZ} = getSteppers();
-    stepperStates.stepperX = states.moving;
-    stepperStates.stepperY = states.moving;
-    stepperStates.stepperZ = states.moving;
+    setStepperInfo("stepperX", true);
+    setStepperInfo("stepperY", true);
+    setStepperInfo("stepperZ", true);
 
     stepperX.rpm(180).cw()
         .step(x, function() { //cw還是前進
             console.log("x done");
-            stepperStates.stepperX = states.done;
+            setStepperInfo("stepperX", false, x);
         });
 
     stepperZ.rpm(180).ccw()
         .step(z, function() { //cw下降
             console.log("z done");
-            stepperStates.stepperZ = states.done;
+            setStepperInfo("stepperZ", false, z);
         });
 
     stepperY.rpm(180).cw()
         .step(y, function() {
             console.log("y done");
-            stepperStates.stepperY = states.done;
+            setStepperInfo("stepperY", false, y);
         });
 
     if (typeof callback === "function") {
@@ -52,26 +69,26 @@ export function _moveToPoint({x, y, z}, callback) {
  */
 export function _backToPoint({x, y, z}, callback) {
     const {stepperX, stepperY, stepperZ} = getSteppers();
-    stepperStates.stepperX = states.moving;
-    stepperStates.stepperY = states.moving;
-    stepperStates.stepperZ = states.moving;
+    setStepperInfo("stepperX", true);
+    setStepperInfo("stepperY", true);
+    setStepperInfo("stepperZ", true);
 
     stepperX.rpm(180).ccw()
         .step(x, function() {
             console.log("x done");
-            stepperStates.stepperX = states.done;
+            setStepperInfo("stepperX", false, x * -1);
         });
 
     stepperZ.rpm(180).cw()
         .step(z, function() { // ccw上升
             console.log("z done");
-            stepperStates.stepperZ = states.done;
+            setStepperInfo("stepperZ", false, z * -1);
         });
 
     stepperY.rpm(180).ccw()
         .step(y, function() {
             console.log("y done");
-            stepperStates.stepperY = states.done;
+            setStepperInfo("stepperY", false, y * -1);
         });
 
     if (typeof callback === "function") {
@@ -128,5 +145,5 @@ function autoCheckDoneThenCallback(callback) {
 }
 
 function isAllDone() {
-    return stepperStates.stepperX === states.done && stepperStates.stepperY === states.done && stepperStates.stepperZ === states.done;
+    return (!steppersInfo.stepperX.moving) && (!steppersInfo.stepperY.moving) && (!steppersInfo.stepperZ.moving);
 }
