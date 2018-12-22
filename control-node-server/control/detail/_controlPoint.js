@@ -1,4 +1,4 @@
-import { updateSteppersInfoToDb, getSteppersInfoFromDb } from "~/control/db/steppersInfo";
+import { updateSteppersInfoToDb, getSteppersInfoFromDb } from "~/db/steppersInfo";
 
 const five = require("johnny-five");
 
