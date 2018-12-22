@@ -23,6 +23,8 @@ npm run serve-monitor
 # HTTP
 HTTP server on port `10423`
 
+You can see [getSample.md](/getSample.md), it shows how to get data by using HTTP
+
 To use HTTP control, you will use those URL
 
 
