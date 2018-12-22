@@ -26,6 +26,12 @@ HTTP server on port `10423`
 To use HTTP control, you will use those URL
 
 
+## getStepperPoints
+```
+/get/getStepperPoints
+```
+http://127.0.0.1:10423/get/getStepperPoints
+
 ## changeLedState
 ```
 /method/changeLedState?color=FFFFFF
