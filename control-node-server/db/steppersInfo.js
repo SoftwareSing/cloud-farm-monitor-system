@@ -1,8 +1,4 @@
-import firebase from "firebase";
-import { firebaseConfig } from "@/firebaseConfig";
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+import { db } from "~/db/db";
 
 export function updateSteppersInfoToDb(steppers) {
     db.ref(`/control/steppers`).set(steppers);
