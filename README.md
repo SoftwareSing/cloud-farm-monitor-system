@@ -1,57 +1,20 @@
 # cloud-farm-monitor-system
 
 ## config
-Before build, you need have some config file in `config` directory
+Before build, you need have some config file in `project_config` directory
 
-You can see [config-explanation.md](/config-explanation.md), it will explain how to write config files
+You can see [config-explanation.md](/docs/config-explanation.md), it will explain how to write config files
 
 
 ## start server
-Use build command to build server
-```sh
-npm run build-control
-npm run build-monitor
-```
-and then start them
-```sh
-npm run serve-control
-npm run serve-monitor
-```
+1. set up your config file ([config-explanation.md](/docs/config-explanation.md))
+2. `npm install`
+3. `npm run build`
+4. clone our client project https://github.com/SoftwareSing/VueLogin2
+5. `npm install` & `npm run build` in client project folder
+6. copy `dist` folder from client to this project's [server-dist](/server-dist) folder
+![](/docs/copy_dist_to_server-dist.jpg)
+7. `npm run serve`
 
-
-
-# HTTP
-HTTP server on port `10423`
-
-To use HTTP control, you will use those URL
-
-
-## changeLedState
-```
-/method/changeLedState?color=FFFFFF
-```
-http://127.0.0.1:10423/method/changeLedState?color=FFFFFF
-
-## controlFertilizerPump
-```
-/method/controlFertilizerPump?state=true&time=1000
-```
-http://127.0.0.1:10423/method/controlFertilizerPump?state=true&time=1000
-
-## controlWaterPump
-```
-/method/controlWaterPump?state=true&time=1000
-```
-http://127.0.0.1:10423/method/controlWaterPump?state=true&time=1000
-
-## goPoint
-```
-/method/goPoint?x=5000&y=5000&z=1000
-```
-http://127.0.0.1:10423/method/goPoint?x=5000&y=5000&z=1000
-
-## backPoint
-```
-/method/backPoint?x=5000&y=5000&z=1000
-```
-http://127.0.0.1:10423/method/backPoint?x=5000&y=5000&z=1000
+server will run on port 5438
+http://127.0.0.1:5438/
