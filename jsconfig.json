@@ -2,8 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./control-node-server/*"],
-      "#/*": ["./monitor-node-server/*"],
+      "~/*": ["./server/*"],
       "@/*": ["./config/*"]
     }
   }
