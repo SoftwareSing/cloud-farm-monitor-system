@@ -1,8 +1,8 @@
 # config
 
-You need to build a directory named `config`
+You need to build a directory named `project_config`
 
-[config](/config) will have those file
+[project_config](/project_config) will have those file
 ```
 firebaseConfig.js
 ```

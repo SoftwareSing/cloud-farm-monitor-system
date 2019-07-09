@@ -4,13 +4,10 @@
         ["babel-plugin-root-import", {
             "paths": [{
                 "rootPathPrefix": "~",
-                "rootPathSuffix": "control-node-server"
+                "rootPathSuffix": "server"
             }, {
                 "rootPathPrefix": "#",
-                "rootPathSuffix": "monitor-node-server"
-            }, {
-                "rootPathPrefix": "@",
-                "rootPathSuffix": "config"
+                "rootPathSuffix": "project_config"
             }]
         }]
     ]
