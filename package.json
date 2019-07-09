@@ -3,9 +3,9 @@
     "scripts": {
         "start": "babel-node ./server/main.js",
         "build": "npm run build-server",
-        "build-server": "babel ./server -d ./build/server && npm run build-config",
-        "build-config": "babel ./config -d ./build/config",
-        "serve": "node ./build/server/main.js",
+        "build-server": "babel ./server -d ./server-dist/server && npm run build-config",
+        "build-config": "babel ./project_config -d ./server-dist/project_config",
+        "serve": "node ./server-dist/server/main.js",
         "msvs": "npm install johnny-five --msvs_version=2012"
     },
     "dependencies": {

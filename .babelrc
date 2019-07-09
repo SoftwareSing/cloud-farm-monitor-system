@@ -6,8 +6,8 @@
                 "rootPathPrefix": "~",
                 "rootPathSuffix": "server"
             }, {
-                "rootPathPrefix": "@",
-                "rootPathSuffix": "config"
+                "rootPathPrefix": "#",
+                "rootPathSuffix": "project_config"
             }]
         }]
     ]
