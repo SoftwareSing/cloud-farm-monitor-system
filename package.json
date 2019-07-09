@@ -1,7 +1,7 @@
 {
     "name": "cloud-farm-monitor-system-master",
     "scripts": {
-        "start": "babel-node ./server/main.js",
+        "server-babel-node": "babel-node ./server/main.js",
         "build": "npm run build-server",
         "build-server": "babel ./server -d ./server-dist/server && npm run build-config",
         "build-config": "babel ./project_config -d ./server-dist/project_config",
